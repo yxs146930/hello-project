@@ -2,9 +2,16 @@
     <head>
         <link href="https://cdn.bootcss.com/bootstrap/3.0.3/css/bootstrap.min.css"  rel="stylesheet" id="bootstrap-css">
         <script src="https://cdn.bootcss.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
+        <!-- 以下是Vue的CDN -->
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.common.js"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.7.0/vue-resource.min.js"></script>
+    
     </head>
     <body>
+    <div id="app">
         <nav class="navbar navbar-default" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -58,9 +65,10 @@
                   </ul>
                 </li>
               </ul>
-            </div><!-- /.navbar-collapse -->
+            </div>
           </nav>
-
+          <!-- this is only a test -->
+          <!-- <h1> {{ name }}</h1> -->
           <div class="banner-breadcum section">
             <div class="row">
                     <div class="breadcrumb-image" style="background-image: url(Image/Mall.jpg);">
@@ -77,23 +85,29 @@
             <div class="container">
                 
                 <div class="row">
-                    <div class="col-sm-6 col-md-6">
+
+                    <!-- 在这里展示10个学校 -->
+                    <div v-for="university in universities" class="col-sm-3 col-md-3">
                         <div class="thumbnail">
                             <h4>
-                                Dior
+                                {{ zhouzhou.email }}
                                 <span class="label label-info info">
                                     <span data-toggle="tooltip" title="viewed">257 <b class="glyphicon glyphicon-eye-open"></b></span>
                                     <span data-toggle="tooltip" title="viewed">3 <b class="glyphicon glyphicon-star"></b></span>
                                     <span data-toggle="tooltip" title="Bootstrap version">3.0.3</span>
                                 </span>
                             </h4>
-                            <img src="Image/Dior.jpg" alt="...">
-                            <a href="http://bootsnipp.com/snippets/featured/post-thumbnail-list" class="btn btn-primary col-xs-12" role="button">View Snippet</a>
-                            <div class="clearfix"></div>
+                            <img v-bind:src="university.img" alt="..." style="height:100%">
+                            <a class="btn btn-primary col-xs-12" role="button">{{ university.name }}</a>
                         </div>
                     </div>
                     
-                    <div class="col-sm-6 col-md-6">
+                    <!-- 在这里展示你的个人资料 -->
+                    <div>
+                        
+
+                    </div>
+                    <!-- <div class="col-sm-6 col-md-6">
                         <div class="thumbnail">
                             <h4>
                                 Chanel
@@ -139,14 +153,14 @@
                             <a href="http://bootsnipp.com/snippets/featured/responsive-quote-carousel" class="btn btn-primary col-xs-12" role="button">View Snippet</a>
                             <div class="clearfix"></div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
-            <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">   
+
     
-    <footer>
+   
+            <footer>
         
         <div class="footer-top"> 
            <div class="container">
@@ -203,7 +217,6 @@
         
     </footer>
     
-    
     <div class="copyright">
      <div class="container">
        
@@ -213,9 +226,43 @@
          
  	   </div>
     </div>
-    
 
-    <style>
+    </div>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            universities: [],
+            name: 'zhouzhou',
+            zhouzhou: null
+        },
+        methods: {
+            getUniversities: function() {
+                this.$http.get('http://mycampusinfo.us-east-2.elasticbeanstalk.com/campus/preview/0/10')
+                .then(function (response) {
+                    this.universities = response.data;
+                    //console.log(this.universities);
+                })
+            },
+
+            getZhouProfile: function() {
+                this.$http.post('http://mycampusinfo.us-east-2.elasticbeanstalk.com/na/profile/basicInfo', {
+                    nativeeId: 1014,
+                    token: "eda53e4c-0fc1-4b22-a809-7e95df02aaa6"
+                })
+                .then(function (response) {
+                    this.zhouzhou = response.data;
+                    console.log(this.zhouzhou)
+                })
+            }
+        },
+        created: function() {
+            this.getUniversities();
+            this.getZhouProfile();
+        },
+    });
+</script>
+<style>
     .breadcrumb-image {
     background-position: center center;
     background-repeat: no-repeat;
@@ -345,7 +392,7 @@ footer ul li a:hover{
 }
 
 
-    </style>
+</style>
 
     </body>
 </html>
