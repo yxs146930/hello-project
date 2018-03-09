@@ -87,79 +87,67 @@
                 <div class="row">
 
                     <!-- 在这里展示10个学校 -->
-                    <div v-for="university in universities" class="col-sm-3 col-md-3">
+                    <div v-for="university in universities" class="col-sm-4 col-md-4">
                         <div class="thumbnail">
                             <h4>
-                                {{ zhouzhou.email }}
-                                <span class="label label-info info">
-                                    <span data-toggle="tooltip" title="viewed">257 <b class="glyphicon glyphicon-eye-open"></b></span>
-                                    <span data-toggle="tooltip" title="viewed">3 <b class="glyphicon glyphicon-star"></b></span>
-                                    <span data-toggle="tooltip" title="Bootstrap version">3.0.3</span>
-                                </span>
+                                {{ university.name }}
+                               
                             </h4>
                             <img v-bind:src="university.img" alt="..." style="height:100%">
                             <a class="btn btn-primary col-xs-12" role="button">{{ university.name }}</a>
                         </div>
-                    </div>
-                    
-                    <!-- 在这里展示你的个人资料 -->
-                    <div>
-                        
-
-                    </div>
-                    <!-- <div class="col-sm-6 col-md-6">
-                        <div class="thumbnail">
-                            <h4>
-                                Chanel
-                                <span class="label label-info info">
-                                    <span data-toggle="tooltip" title="Viewed">433 <i class="glyphicon glyphicon-eye-open"></i></span>
-                                    <span data-toggle="tooltip" title="Favorited">4 <i class="glyphicon glyphicon-star"></i></span>
-                                    <span data-toggle="tooltip" title="Bootstrap version">3.0.3</span>
-                                </span>
-                            </h4>
-                            <img src="Image/Chanel.jpg" alt="...">
-                            <a href="http://bootsnipp.com/snippets/featured/colourful-tabbed-slider-carousel" class="btn btn-primary col-xs-12" role="button">View Snippet</a>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-sm-6 col-md-6">
-                        <div class="thumbnail">
-                            <h4>
-                               Gucci
-                                <span class="label label-info info">
-                                    <span data-toggle="tooltip" title="Viewed">7.3K <b class="glyphicon glyphicon-eye-open"></b></span>
-                                    <span data-toggle="tooltip" title="Favorited">31 <b class="glyphicon glyphicon-star"></b></span>
-                                    <span data-toggle="tooltip" title="Bootstrap version">3.0.3</span>
-                                </span>
-                            </h4>
-                            <img src="Image/Gucci.jpg" alt="...">
-                            <a href="http://bootsnipp.com/snippets/featured/timeline-responsive" class="btn btn-primary col-xs-12" role="button">View Snippet</a>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-sm-6 col-md-6">
-                        <div class="thumbnail">
-                            <h4>
-                                Prada 
-                                <span class="label label-info info">
-                                    <span data-toggle="tooltip" title="Viewed">2.5K <b class="glyphicon glyphicon-eye-open"></b></span>
-                                    <span data-toggle="tooltip" title="Favorited">18 <b class="glyphicon glyphicon-star"></b></span>
-                                    <span data-toggle="tooltip" title="Bootstrap version">3.0.0</span>
-                                </span>
-                            </h4>
-                            <img src="Image/Prada.jpg" alt="...">
-                            <a href="http://bootsnipp.com/snippets/featured/responsive-quote-carousel" class="btn btn-primary col-xs-12" role="button">View Snippet</a>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div> -->
+                    </div> 
+                    </div>          
                 </div>
-            </div>
+
+                <form class="form-horizontal">
+                    <fieldset>
+                    
+                    <!-- Form Name -->
+                    <legend>Personal Information</legend>
+                    
+                    <!-- Text input-->
+                    <div v-for="zhou in zhouzhou"  class="form-group">
+                      <label class="col-md-6 control-label" for="name">Name:{{ zhouzhou.name }}</label>                       
+                    </div>
+                    
+                    <!-- Text input-->
+                    <div v-for="zhou in zhouzhou" class="form-group">
+                      <label class="col-md-6 control-label" for="Email">Email:{{ zhouzhou.email }}</label>                        
+                    </div>
+                    
+                    <!-- Text input-->
+                    <div v-for="zhou in zhouzhou" class="form-group">
+                      <label class="col-md-6 control-label" for="dob">Date of Birth:{{ zhouzhou.birthday }}</label>       
+                    </div>
+
+                    <div v-for="zhou in zhouzhou" class="form-group">
+                        <label class="col-md-6 control-label" for="University">My University:</label>     
+                    </div>
+
+                    <div v-for="zhou in zhouzhou" class="form-group">
+                        <label class="col-md-6 control-label" for="Major">My Major:</label>     
+                    </div>
+                    
+
+                    </fieldset>
+                    </form>
+                    
+                   <!-- <div>
+                        <counter heading = "Likes"></counter>
+                        <counter heading = "Dislikes"></counter>
+                
+                 <template id = "counter-template" >
+                 <button @click = "count += 1">{{count}}</button>
+                  <h1>{{heading}}</h1>   
+                </template>
+                </div>-->
 
 
-    
-   
+            </div> 
+            
+            
+            
             <footer>
         
         <div class="footer-top"> 
@@ -228,40 +216,61 @@
     </div>
 
     </div>
-<script>
-    var vm = new Vue({
-        el: '#app',
-        data: {
-            universities: [],
-            name: 'zhouzhou',
-            zhouzhou: null
-        },
-        methods: {
-            getUniversities: function() {
-                this.$http.get('http://mycampusinfo.us-east-2.elasticbeanstalk.com/campus/preview/0/10')
-                .then(function (response) {
-                    this.universities = response.data;
-                    //console.log(this.universities);
-                })
-            },
 
-            getZhouProfile: function() {
-                this.$http.post('http://mycampusinfo.us-east-2.elasticbeanstalk.com/na/profile/basicInfo', {
-                    nativeeId: 1014,
-                    token: "eda53e4c-0fc1-4b22-a809-7e95df02aaa6"
-                })
-                .then(function (response) {
-                    this.zhouzhou = response.data;
-                    console.log(this.zhouzhou)
-                })
-            }
-        },
-        created: function() {
-            this.getUniversities();
-            this.getZhouProfile();
-        },
-    });
-</script>
+    <script>
+            Vue.component('counter',{
+                template:'#counter-template',
+                props:['heading'],
+                data : function(){
+                    return { count :0};
+                }
+            })
+        
+            
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                  universities: [],
+                  name: 'zhouzhou',
+                  zhouzhou: null
+                },
+        
+             computed: {
+              zhouzhou: function() {
+              return this.data.slice(0, 1)
+               }
+              },
+                
+            methods: {
+                    getUniversities: function() {
+                        this.$http.get('http://mycampusinfo.us-east-2.elasticbeanstalk.com/campus/preview/0/10')
+                        .then(function (response) {
+                            this.universities = response.data;
+                            //console.log(this.universities);
+                        })
+                    },
+        
+                    getZhouProfile: function() {
+                        this.$http.post('http://mycampusinfo.us-east-2.elasticbeanstalk.com/na/profile/basicInfo', {
+                            nativeeId: 1014,
+                            token: "c63fc04c-0965-4fc3-a715-3767bdaac450"
+                        })
+                        .then(function (response) {
+                            this.zhouzhou = response.data;
+                            console.log(this.zhouzhou);
+                        })
+                    }
+                },
+                created: function() {
+                    this.getUniversities();
+                    this.getZhouProfile();
+                },
+            });
+        </script>
+
+
+
+
 <style>
     .breadcrumb-image {
     background-position: center center;
