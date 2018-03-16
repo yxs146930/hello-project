@@ -1,0 +1,218 @@
+<html>
+    <head>
+        <link href="https://cdn.bootcss.com/bootstrap/3.0.3/css/bootstrap.min.css"  rel="stylesheet" id="bootstrap-css">
+        <script src="https://cdn.bootcss.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
+        <!-- 以下是Vue的CDN -->
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.common.js"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.7.0/vue-resource.min.js"></script>
+    
+    </head>
+    <body>
+    <div id="app">
+       <h1>this tests the framwork is successful: {{ name }}</h1> <br>
+       
+       <!-- Please input signup email -->
+       <div>
+            <label>Please input your email: </label>
+            <input type="text" v-model="signupModel.email"></input>
+       </div>
+
+       <!-- Please input your name -->
+       <div>
+            <label>Please input your name: </label>
+            <input type="text" v-model="signupModel.name"></input>
+       </div>
+
+        <!-- Please input your name -->
+        <div>
+            <label>Please input your nickname: </label>
+            <input type="text" v-model="signupModel.nickName"></input>
+        </div>
+ 
+       <input type="button" v-on:click="signup" value="sign up"></input>
+    </div>
+
+    <script>
+            var vm = new Vue({
+                el: '#app',
+                
+                data: {
+                  name: 'zhouzhou',
+                  signupModel: {
+                      email: "sz1783@nyu.edu",
+                      password: '123456',
+                      name: 'Miss Zhou',
+                      nickName: "Zhou Zhou",
+                      gender: 'Female',
+                  }
+                },
+                
+                methods: {
+                    signup: function() {
+                        console.log("going into method");
+                        const apiUrl = 'http://dreaminfo-env.us-west-2.elasticbeanstalk.com/nativee/signup'
+                        const paramData = this.signupModel;
+                        this.$http.post(apiUrl, paramData).then(response => {
+                           alert("successfull")
+                           console.log("successfull")
+                        }, errorResponse => {
+                            console.log("unsuccessfull")
+                        })
+                    },
+                },
+
+                created: function() {
+                },
+
+            });
+        </script>
+
+
+
+
+<style>
+    .breadcrumb-image {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 104px 0 110px;
+    position: relative;
+    width:100%;
+}
+.breadcrumb-image::before {
+    background: rgba(0, 0, 0, 0.80) none repeat scroll 0 0;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+}
+.breadcrumb-image h1 {
+    color: #ffffff;
+    font-size: 33px;
+    font-weight: 600;
+    line-height: 40px;
+    position: relative;
+    text-transform: uppercase;
+}
+.breadcrumbs_path {
+    color: #fff;
+    margin-top: 8px;
+    position: relative;
+    z-index: 9;
+}
+.breadcrumbs_path > a {
+    color: #fff;
+    transition: all 0.3s ease 0s;
+}
+.thumbnail {
+    position: relative;
+    padding:0px;
+    margin-top:30px;
+    margin-bottom: 20px;
+    width: 300px;
+    height: 300px;
+    margin-left: auto;
+    margin-right:auto;
+    font-family: Verdana;
+}
+
+.thumbnail > h4 {
+    padding: 7px 5px 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.thumbnail h4 .info {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: 0.6em;
+    padding-left: 15px;
+    border-top-right-radius: 3px;
+    border-bottom-left-radius: 4px;
+    border-radius: 0px;
+    border-bottom-left-radius: 5px;
+    cursor:  pointer;
+}
+
+.thumbnail h4 .info > span {
+    margin-right: 10px;   
+}
+body{
+  font-family: 'Raleway', sans-serif;
+}
+
+footer{
+	background-color:#222222;
+    padding: 60px 0px;
+}
+
+footer ul{
+    list-style:none;
+    margin:0 auto;
+    display:inline-block;
+    padding-top:50px;
+}
+
+footer ul li{
+    float:left;
+}
+
+footer ul li a{
+	color:#b1aca1;
+    padding:20px;
+}
+
+footer ul li a:hover{
+	color:#7dabdb;
+	text-decoration:none;
+}
+
+.footer-top{
+	padding-bottom:50px;
+}
+
+.footer-top .fa{
+    font-size:18px;
+    color: #FFF;
+    padding-right:10px;
+}
+
+.footer-top a{
+    color:#FFF;
+    text-decoration:none;
+}
+
+.footer-top .col-lg-2:hover .fa , .footer-top .col-lg-2:hover a{
+    color:#7dabdb;
+}
+
+.copyright{
+    background-color:#f0f0f0;
+}
+
+.copyright p{
+	font-size:12px;
+	padding:15px 0 10px 0;
+}
+
+body{padding-top:30px;}
+
+.glyphicon {  margin-bottom: 10px;margin-right: 10px;}
+
+small {
+display: block;
+line-height: 1.428571429;
+color: #999;
+}
+
+</style>
+
+    </body>
+</html>
