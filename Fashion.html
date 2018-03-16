@@ -67,8 +67,7 @@
               </ul>
             </div>
           </nav>
-          <!-- this is only a test -->
-          <!-- <h1> {{ name }}</h1> -->
+          <!-- this is the banner -->
           <div class="banner-breadcum section">
             <div class="row">
                     <div class="breadcrumb-image" style="background-image: url(Image/Mall.jpg);">
@@ -88,65 +87,62 @@
 
                     <!-- 在这里展示10个学校 -->
                     <div v-for="university in universities" class="col-sm-4 col-md-4">
-                        <div class="thumbnail">
+                        <div class="thumbnail" style = "border:0px">
                             <h4>
-                                {{ university.name }}
+                                {{ university.state }}&nbsp;{{university.city}}
                                
                             </h4>
                             <img v-bind:src="university.img" alt="..." style="height:100%">
-                            <a class="btn btn-primary col-xs-12" role="button">{{ university.name }}</a>
+                            <a class="btn btn-primary col-xs-12" role="button" style = "background:black;border-color:white">{{ university.name }}</a>
+                            <h5 style = "text-align:center">
+                                {{university.website}}
+                            </h5>
                         </div>
                     </div> 
                     </div>          
                 </div>
-
-                <form class="form-horizontal">
-                    <fieldset>
-                    
-                    <!-- Form Name -->
-                    <legend>Personal Information</legend>
-                    
-                    <!-- Text input-->
-                    <div v-for="zhou in zhouzhou"  class="form-group">
-                      <label class="col-md-6 control-label" for="name">Name:{{ zhouzhou.name }}</label>                       
+                <br></br>
+                <br></br>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-10 col-md-10">
+                            <div class="well well-sm">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-4">
+                                        <img v-bind:src="zhouzhou.img" alt="" class="img-rounded img-responsive" />
+                                    </div>
+                                    <div class="col-sm-6 col-md-8">
+                                        <h4>
+                                            Doris Personal File</h4>
+                                        <small><cite title="San Francisco, USA">{{ zhouzhou.country }} <i class="glyphicon glyphicon-map-marker">
+                                        </i></cite></small>
+                                        <p>
+                                            <i class="glyphicon glyphicon-envelope"></i>{{ zhouzhou.email }}
+                                            <br />
+                                            <i class="glyphicon glyphicon-globe"></i><a href="http://dreaminfo-env.us-west-2.elasticbeanstalk.com">www.dreaminfo-env.us-west-2.elasticbeanstalk.comm</a>
+                                            <br />
+                                            <i class="glyphicon glyphicon-gift"></i>{{ zhouzhou.email }}</p>
+                                        <!-- Split button -->
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary">
+                                                Social</button>
+                                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                                <span class="caret"></span><span class="sr-only">Social</span>
+                                            </button>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><a href="#">Twitter</a></li>
+                                                <li><a href="https://plus.google.com/+Jquery2dotnet/posts">Google +</a></li>
+                                                <li><a href="https://www.facebook.com/jquery2dotnet">Facebook</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="#">Github</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <!-- Text input-->
-                    <div v-for="zhou in zhouzhou" class="form-group">
-                      <label class="col-md-6 control-label" for="Email">Email:{{ zhouzhou.email }}</label>                        
-                    </div>
-                    
-                    <!-- Text input-->
-                    <div v-for="zhou in zhouzhou" class="form-group">
-                      <label class="col-md-6 control-label" for="dob">Date of Birth:{{ zhouzhou.birthday }}</label>       
-                    </div>
-
-                    <div v-for="zhou in zhouzhou" class="form-group">
-                        <label class="col-md-6 control-label" for="University">My University:</label>     
-                    </div>
-
-                    <div v-for="zhou in zhouzhou" class="form-group">
-                        <label class="col-md-6 control-label" for="Major">My Major:</label>     
-                    </div>
-                    
-
-                    </fieldset>
-                    </form>
-                    
-                   <!-- <div>
-                        <counter heading = "Likes"></counter>
-                        <counter heading = "Dislikes"></counter>
-                
-                 <template id = "counter-template" >
-                 <button @click = "count += 1">{{count}}</button>
-                  <h1>{{heading}}</h1>   
-                </template>
-                </div>-->
-
-
-            </div> 
-            
-            
+                </div>
             
             <footer>
         
@@ -243,17 +239,17 @@
                 
             methods: {
                     getUniversities: function() {
-                        this.$http.get('http://mycampusinfo.us-east-2.elasticbeanstalk.com/campus/preview/0/10')
+                        this.$http.get('http://dreaminfo-env.us-west-2.elasticbeanstalk.com/campus/preview/0/10')
                         .then(function (response) {
                             this.universities = response.data;
-                            //console.log(this.universities);
+                            console.log(this.universities);
                         })
                     },
         
                     getZhouProfile: function() {
-                        this.$http.post('http://mycampusinfo.us-east-2.elasticbeanstalk.com/na/profile/basicInfo', {
+                        this.$http.post('http://dreaminfo-env.us-west-2.elasticbeanstalk.com/na/profile/basicInfo', {
                             nativeeId: 1014,
-                            token: "c63fc04c-0965-4fc3-a715-3767bdaac450"
+                            token: "f91a4d75-cde6-472e-a2c7-b69f56336f87"
                         })
                         .then(function (response) {
                             this.zhouzhou = response.data;
@@ -400,6 +396,15 @@ footer ul li a:hover{
 	padding:15px 0 10px 0;
 }
 
+body{padding-top:30px;}
+
+.glyphicon {  margin-bottom: 10px;margin-right: 10px;}
+
+small {
+display: block;
+line-height: 1.428571429;
+color: #999;
+}
 
 </style>
 
