@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <head>
+        <link href="https://cdn.bootcss.com/bootstrap/3.0.3/css/bootstrap.min.css"  rel="stylesheet" id="bootstrap-css">
+        <script src="https://cdn.bootcss.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
+        <!-- 以下是Vue的CDN -->
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.common.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.7.0/vue-resource.min.js"></script>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+
+		<!-- Website CSS style -->
+		<link rel="stylesheet" type="text/css" href="assets/css/main.css">
+
+		<!-- Website Font style -->
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+		
+		<!-- Google Fonts -->
+		<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+
+    </head>
+</head>
+
+<body>
+    <div class="container" id="app">
+        <div class="row main">
+            <div class="panel-heading">
+                <div class="panel-title text-center">
+                    <h1 class="title">Welcome</h1>
+                    <hr/>
+                </div>
+            </div>
+
+            <div class="main-login main-center">
+
+                <form class="form-horizontal" method="post" action="#">
+                   <!-- Please input signup name -->
+                    <div class="form-group">
+                        <label for="name" class="cols-sm-2 control-label">User Name</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span> 
+                                <input type="text" v-model="signupModel.name" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Please input signup nickname -->
+                    <div class="form-group">
+                        <label for="password" class="cols-sm-2 control-label">Nickname</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                                <input type="text" v-model="signupModel.nickName" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Please input email -->
+                    <div class="form-group">
+                        <label for="password" class="cols-sm-2 control-label">Email</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                <input type="text" v-model="signupModel.email" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Please input password -->
+                    <div class="form-group">
+                        <label for="password" class="cols-sm-2 control-label">Password</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                <input type="text" v-model="signupModel.password" />
+                            </div>
+                        </div>
+                    </div>
+                   <!-- Please input signup name -->
+                    <div class="form-group">
+                        <label for="password" class="cols-sm-2 control-label">Gender</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                                <input type="text" v-model="signupModel.gender" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <button type="button" class="btn btn-primary btn-lg btn-block login-button" v-on:click="signup" value="sign up">Register</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+</body>
+
+</html>
+
+<style>
+    body, html{
+     height: 100%;
+ 	background-repeat: no-repeat;
+ 	background-color: #d3d3d3;
+ 	font-family: 'Oxygen', sans-serif;
+}
+
+.main{
+ 	margin-top: 70px;
+}
+
+h1.title { 
+	font-size: 50px;
+	font-family: 'Passion One', cursive; 
+	font-weight: 400; 
+}
+
+hr{
+	width: 10%;
+	color: #fff;
+}
+
+.form-group{
+	margin-bottom: 15px;
+}
+
+label{
+	margin-bottom: 15px;
+}
+
+input,
+input::-webkit-input-placeholder {
+    font-size: 11px;
+    padding-top: 3px;
+}
+
+.main-login{
+ 	background-color: #fff;
+    /* shadows and rounded borders */
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+
+}
+
+.main-center{
+ 	margin-top: 30px;
+ 	margin: 0 auto;
+ 	max-width: 330px;
+    padding: 40px 40px;
+
+}
+
+.login-button{
+	margin-top: 5px;
+}
+
+.login-register{
+	font-size: 11px;
+	text-align: center;
+}
+</style>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+
+        data: {
+            name: 'zhouzhou',
+            signupModel: {
+                email: "sz1783@nyu.edu",
+                password: '123456',
+                name: 'Miss Zhou',
+                nickName: "Zhou Zhou",
+                gender: 'Female',
+            }
+        },
+
+        methods: {
+            signup: function () {
+                console.log("going into method");
+                const apiUrl = 'http://dreaminfo-env.us-west-2.elasticbeanstalk.com/nativee/signup'
+                const paramData = this.signupModel;
+                this.$http.post(apiUrl, paramData).then(response => {
+                    alert("successfull")
+                    console.log("successfull")
+                }, errorResponse => {
+                    console.log("unsuccessfull")
+                })
+            },
+        },
+
+        created: function () {
+        },
+
+    });
+</script>
